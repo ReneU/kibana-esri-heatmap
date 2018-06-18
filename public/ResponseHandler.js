@@ -5,9 +5,8 @@ export function handleResponse(vis, response) {
     return {
       geometry: {
         type: 'point',
-        x: attributes.center.x,
-        y: attributes.center.y,
-        spatialReference: attributes.center.spatialReference.latestWkid
+        lat: attributes.center.lat,
+        lon: attributes.center.lon
       },
       attributes: {
         scale: attributes.scale,
@@ -17,7 +16,6 @@ export function handleResponse(vis, response) {
     };
   });
   const objectIdField = 'objectid';
-  const spatialReference = response.hits.hits[0]._source.center.spatialReference.latestWkid;
   const fields = [
     {
       name: 'objectid',
@@ -28,12 +26,7 @@ export function handleResponse(vis, response) {
       name: 'scale',
       alias: 'Scale',
       type: 'double '
-    },
-    {
-      name: 'test',
-      alias: 'test',
-      type: 'integer'
     }
   ];
-  return { source, objectIdField, spatialReference, fields };
+  return { source, objectIdField, fields };
 }

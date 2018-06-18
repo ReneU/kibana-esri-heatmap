@@ -34,7 +34,7 @@ export default class HeatmapVisualization {
     this.el.appendChild(container);
   }
 
-  render({ source, objectIdField, spatialReference, fields }) {
+  render({ source, objectIdField, fields }) {
     if (!source || !source.length) {
       this.destroy();
       return;
@@ -77,8 +77,8 @@ export default class HeatmapVisualization {
           },
           featureSet: {
             features: source.map(item => {
-              item.geometry.spatialReference = new SpatialReference(spatialReference);
-              const geometry = new Point(item.geometry);
+              item.geometry.spatialReference = new SpatialReference(4326);
+              const geometry = new Point(item.geometry.lon, item.geometry.lat);
               const graphic = new Graphic(geometry);
               graphic.setAttributes(item.attributes);
               return graphic;
