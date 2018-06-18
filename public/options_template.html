@@ -2,6 +2,9 @@
   <label>Geo Field</label>
   <input type="text" ng-model="vis.params.geoField" class="form-control" /></br>
 
+  <label>Blur Radius - {{ vis.params.blurRadius }}</label>
+  <input type="range" ng-model="vis.params.blurRadius" class="form-control" min="1" max="100" /></br>
+
   <label>Max Event Count - {{ vis.params.maxEventCount }}</label>
   <input type="range" ng-model="vis.params.maxEventCount" class="form-control" min="1" max="1000" /></br>
 </div>

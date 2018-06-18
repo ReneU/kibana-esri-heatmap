@@ -14,7 +14,7 @@ function HeatmapProvider(Private) {
   return VisFactory.createBaseVisualization({
     name: 'esri-heatmap',
     title: 'Esri Heatmap',
-    icon: 'fa fa-line-chart',
+    icon: 'fa fa-map',
     description: 'Esri Heatmap',
     category: CATEGORY.OTHER,
     visualization: HeatmapVisualization,
@@ -23,7 +23,8 @@ function HeatmapProvider(Private) {
     visConfig: {
       defaults: {
         geoField: 'center',
-        maxEventCount: 100
+        maxEventCount: 100,
+        blurRadius: 10
       },
     },
     editorConfig: {
