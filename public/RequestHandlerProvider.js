@@ -5,9 +5,6 @@ const getRequestBody = (params, queryFilter, timeFilter) => {
       'bool': {
         'must': [
           {
-            'match': { [params.actionField]: { 'query': params.actionName } }
-          },
-          {
             'exists': { 'field': params.geoField }
           },
           {
@@ -22,6 +19,13 @@ const getRequestBody = (params, queryFilter, timeFilter) => {
       }
     }
   };
+
+  if (params.actionField && params.actionName) {
+    requestBody.query.bool.must.push({
+      'match': { [params.actionField]: { 'query': params.actionName } }
+    });
+  }
+
   const queries = queryFilter.getFilters();
   if (queries && queries.length) {
     queries.forEach(({ meta }) => {

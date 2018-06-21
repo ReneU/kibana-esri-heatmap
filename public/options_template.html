@@ -2,11 +2,13 @@
   <label>Geo Field</label>
   <input type="text" ng-model="vis.params.geoField" class="form-control" /></br>
 
-  <label>Action Field</label>
+  Would you like to filter points for a specific action?
+  <br>
+  <label>Action Field (optional)</label>
   <input type="text" ng-model="vis.params.actionField" class="form-control" /></br>
 
-  <label>Name Field</label>
-  <input type="text" ng-model="vis.params.actionName" class="form-control" /></br>
+  <label>Action Name</label>
+  <input type="text" ng-if="vis.params.actionField" ng-model="vis.params.actionName" class="form-control" /></br>
 
   <label>Blur Radius - {{ vis.params.blurRadius }}</label>
   <input type="range" ng-model="vis.params.blurRadius" class="form-control" min="1" max="100" /></br>
