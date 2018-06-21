@@ -23,6 +23,8 @@ function HeatmapProvider(Private) {
     visConfig: {
       defaults: {
         geoField: 'center',
+        actionField: 'topic.keyword',
+        actionName: 'center changed',
         maxEventCount: 100,
         blurRadius: 10
       },

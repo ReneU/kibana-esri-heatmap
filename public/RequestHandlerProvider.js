@@ -5,6 +5,9 @@ const getRequestBody = (params, queryFilter, timeFilter) => {
       'bool': {
         'must': [
           {
+            'match': { [params.actionField]: { 'query': params.actionName } }
+          },
+          {
             'exists': { 'field': params.geoField }
           },
           {

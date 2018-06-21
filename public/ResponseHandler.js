@@ -5,8 +5,8 @@ export function handleResponse(vis, response) {
     return {
       geometry: {
         type: 'point',
-        lat: attributes.center.lat,
-        lon: attributes.center.lon
+        lat: attributes[vis.params.geoField].lat,
+        lon: attributes[vis.params.geoField].lon
       },
       attributes: {
         scale: attributes.scale,
