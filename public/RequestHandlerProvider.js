@@ -30,20 +30,29 @@ const getRequestBody = (params, queryFilter, timeFilter) => {
   if (queries && queries.length) {
     queries.forEach(({ meta }) => {
       if (meta.disabled) return;
-      const matchQuery = {
-        match: {
-          [meta.key]: {
-            query: meta.value
-          }
-        }
-      };
-      addMatchQuery(requestBody, matchQuery, meta.negate);
+      switch (meta.type) {
+        case 'phrase':
+          const phraseQuery = {
+            match: {
+              [meta.key]: meta.value
+            }
+          };
+          addMustQuery(requestBody, phraseQuery, meta);
+          break;
+        case 'exists':
+          const existsQuery = {
+            exists: {
+              field: meta.key
+            }
+          };
+          addMustQuery(requestBody, existsQuery, meta);
+      }
     });
   }
   return requestBody;
 };
 
-function addMatchQuery(request, query, negate) {
+function addMustQuery(request, query, { negate }) {
   const boolObject = request.query.bool;
   let matcher;
   if (negate) {
